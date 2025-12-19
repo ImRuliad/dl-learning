@@ -31,11 +31,20 @@ def tensor_details(tensors):
         print(f"tensor device: {tensor.device}")
         print(f"full tensor: {tensor}")
 
+def transform_tensor():
+    vector = torch.arange(16)
+    print(f"\nVector of tensors: {vector}")
+    matrix = vector.reshape(4,4)
+    print(f"\nMatrix of 4 x 4 tensors: {matrix}")
+
+    matrix2 = torch.arange(16).reshape(4,4)
+    print(matrix2)
 
 
 
 
 if __name__ == "__main__":
     tensors = []
-    create_tensors(tensors)
-    tensor_details(tensors)
+    #create_tensors(tensors)
+    #tensor_details(tensors)
+    transform_tensor()
