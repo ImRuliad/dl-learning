@@ -36,10 +36,13 @@ def transform_tensor():
     print(f"\nVector of tensors: {vector}")
     matrix = vector.reshape(4,4)
     print(f"\nMatrix of 4 x 4 tensors: {matrix}")
+    #alternative use matrix = torch.arange(16).reshape(4,4)
 
-    matrix2 = torch.arange(16).reshape(4,4)
-    print(matrix2)
-
+def transform_tensor_view():
+    vector = torch.arange(16)
+    matrix = vector.view(4, -1)
+    print(f"\nVector of tensors: {vector}")
+    print(f"\nReshaped Matrix: {matrix}")
 
 
 
@@ -47,4 +50,5 @@ if __name__ == "__main__":
     tensors = []
     #create_tensors(tensors)
     #tensor_details(tensors)
-    transform_tensor()
+    #transform_tensor()
+    transform_tensor_view()
