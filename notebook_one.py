@@ -45,6 +45,27 @@ def transform_tensor_view():
     print(f"\nVector of tensors: {vector}")
     print(f"\nReshaped Matrix: {matrix}")
 
+"""
+unsqueeze() and squeeze() are essential for managing tensor dimensions. 
+The most common practical use case: 
+You will use unsqueeze(0) constantly to add a 'batch' dimension to a single data point before feeding it to a model.
+"""
+def squeeze_tensor():
+    tensor = torch.tensor([1, 2, 3, 4, 5])
+    print("Original shape:", tensor.shape)
+    print("Original tensor:", tensor)
+
+    with_batch = tensor.unsqueeze(0)    # Add a dimension at position 0 (adds batch dimension)
+    print("\nAfter unsqueeze(0):")
+    print("Shape:", with_batch.shape)
+    print("Tensor:\n", with_batch)
+
+    back_to_original = with_batch.squeeze(0)     # Remove the dimension we just added
+    print("\nAfter squeeze(0):")
+    print("Shape:", back_to_original.shape)
+    print("Tensor:", back_to_original)
+
+
 #Find the best available device: CUDA -> MPS -> CPU
 def find_device():
     if torch.cuda.is_available():
@@ -61,6 +82,12 @@ def find_device():
         print(f"No GPU available, using CPU.")
     return device
 
+
+"""
+Create two large tensors. Time matrix multiplication on CPU.
+Move tensors to GPU device using .to(device) if available.
+Time same operations on GPU.
+"""
 def benchmark(device):
     size = 2000
     tensor_a_cpu = torch.rand(size, size)
@@ -98,5 +125,6 @@ if __name__ == "__main__":
     #tensor_details(tensors)
     #transform_tensor()
     #transform_tensor_view()
+    #squeeze_tensor()
     device = find_device()
     benchmark(device)
