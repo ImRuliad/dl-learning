@@ -15,11 +15,23 @@ def create_train_dataset(transform):
         print(f"Unable to obtain train dataset {e}")
         return
     print(f"Successfully obtained train dataset of size {len(train_dataset)}")
-
     return train_dataset
 
+def create_test_dataset(transform):
+    try:
+        test_dataset = datasets.MNIST(
+        root='./data',
+        train=False,
+        download=True,
+        transform=transform
+        )
+    except Exception as e:
+        print(f"Unable to obtain test dataset {e}")
+        return
+    print(f"Successfully obtained test dataset of size {len(test_dataset)}")
+    return test_dataset
 
 if __name__ == "__main__":
     transform = transforms.ToTensor()
     create_train_dataset(transform)
-    #create_test_dataset(transform)
+    create_test_dataset(transform)
